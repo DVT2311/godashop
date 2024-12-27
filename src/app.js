@@ -2,14 +2,12 @@ const express = require('express');
 const { engine } = require('express-handlebars');
 const path = require('path');
 const route = require('./routes');
-const db = require('./config/db'); // Import kết nối
+// const db = require('./config/config.json'); // Import kết nối
 
 const app = express();
 
 // Cấu hình thư mục public để phục vụ các tệp tĩnh
 app.use(express.static(path.join(__dirname, 'public')));
-
-// console.log(path.join(__dirname, 'public'))
 
 // Thiết lập Handlebars làm template engine
 app.engine('hbs', engine({ extname: '.hbs' }));

@@ -1,88 +1,41 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('../../config/db');
-
-const Products = sequelize.define('view_product', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  barcode: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  sku: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  price: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  discount_from_date: {
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
-  discount_to_date: {
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
-  featured_image: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  inventory_qty: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  category_id: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  brand_id: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  created_date: {
-    type: DataTypes.DATE,
-    allowNull: true,
-  },
-  description: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  star: {
-    type: DataTypes.FLOAT,
-    allowNull: true,
-  },
-  featured: {
-    type: DataTypes.INTEGER,
-    allowNull: true,
-  },
-  sale_price: {
-    type: DataTypes.DECIMAL(26, 0),
-    allowNull: true,
+'use strict';
+const { Model } = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class ViewProduct extends Model {
+    static associate(models) {
+      // Define associations here (nếu cần)
+    }
   }
-
-}, {
-  tableName: 'view_product', // Tên bảng trong cơ sở dữ liệu
-
-  // don't add the timestamp attributes (updatedAt, createdAt)
-  timestamps: false,
-
-  // If don't want createdAt
-  // createdAt: false,
-
-  // If don't want updatedAt
-  // updatedAt: false,
-
-  // your other configuration here
-  // attributes: ['id', 'barcode', 'sku', 'name', 'price', 'discount_from_date', 'discount_to_date', 'featured_image',
-  // 'inventory_qty', 'category_id', 'brand_id', 'created_date', 'description', 'star', 'featured', 'sale_price'],
-});
-
-module.exports = Products;
+  ViewProduct.init(
+    {
+      barcode: DataTypes.STRING(13),
+      sku: DataTypes.STRING(20),
+      name: DataTypes.STRING(300),
+      price: DataTypes.INTEGER,
+      discount_percentage: DataTypes.INTEGER,
+      discount_from_date: DataTypes.DATE,
+      discount_to_date: DataTypes.DATE,
+      featured_image: DataTypes.STRING(100),
+      inventory_qty: DataTypes.INTEGER,
+      category_id: DataTypes.INTEGER,
+      brand_id: DataTypes.INTEGER,
+      created_date: DataTypes.DATE,
+      description: DataTypes.TEXT,
+      star: DataTypes.FLOAT,
+      featured: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        comment: '1: nổi bật',
+      },
+      sale_price: DataTypes.DECIMAL(26, 0),
+    },
+    {
+      sequelize,
+      modelName: 'View_Product',
+      tableName: 'view_product', // Đặt tên bảng cố định
+      freezeTableName: true, // Ngăn Sequelize tự động thêm "s"
+      timestamps: false, // Tắt tự động thêm cột createdAt và updatedAt
+    }
+  );
+  return ViewProduct;
+};

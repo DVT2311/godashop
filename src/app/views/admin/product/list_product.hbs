@@ -1,0 +1,76 @@
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Quản lý</a>
+            </li>
+        </ol>
+        <!-- DataTables Example -->
+        <div class="action-bar">
+            <input type="submit" class="btn btn-primary btn-sm" value="Thêm" name="add">
+            <input type="submit" class="btn btn-danger btn-sm" value="Xóa" name="delete">
+        </div>
+        {{!--
+        <pre>{{{json products}}}</pre> --}}
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" onclick="checkAll(this)"></th>
+                                <th>Mã</th>
+                                <th style="width:50px">Tên </th>
+                                <th>Hình ảnh</th>
+                                <th>Giá bán lẻ</th>
+                                <th>% giảm giá</th>
+                                <th>Giá bán thực tế</th>
+                                <th>Lượng tồn</th>
+                                <th>Đánh giá</th>
+                                <th>Nội bật</th>
+                                <th>Danh mục</th>
+                                <th>Ngày tạo</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each products}}
+                            {{!-- {{#dataValues}} --}}
+                            <tr>
+
+                                <td><input type="checkbox"></td>
+                                <td>#{{this.id}}</td>
+                                <td>{{this.name}}</td>
+                                <td><img src="/admin/images/{{this.featured_image}}"></td>
+                                <td>{{this.price}}</td>
+                                <td>{{this.discount_percentage}}</td>
+                                <td>{{this.sale_price}}</td>
+                                <td>{{this.inventory_qty}}</td>
+                                <td>{{this.star}}</td>
+                                <td>{{this.featured}}</td>
+                                <td>{{this.category_id}} </td>
+                                <td>{{this.created_date}}</td>
+                                <td><a href="/admin/pages/comment/list.html">Đánh giá</a></td>
+                                <td><a href="/admin/pages/image/list.html">Hình ảnh</a></td>
+                                <td><input type="button" onclick="Edit('25');" value="Sửa"
+                                        class="btn btn-warning btn-sm"></td>
+                                <td><input type="button" onclick="Delete('25');" value="Xóa"
+                                        class="btn btn-danger btn-sm"></td>
+                            </tr>
+                            {{!-- {{/dataValues}} --}}
+                            {{else}}
+                            <tr>
+                                <td colspan="13">Không có sản phẩm nào</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container-fluid -->

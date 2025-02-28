@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue: false,
         comment: '1: nổi bật',
       },
-      sale_price: DataTypes.DECIMAL(26, 0),
+      // sale_price: DataTypes.DECIMAL(26, 0),
     },
     {
       sequelize,

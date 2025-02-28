@@ -1,24 +1,34 @@
 const express = require('express');
 const { engine } = require('express-handlebars');
 const path = require('path');
-const route = require('./routes');
-// const db = require('./config/config.json'); // Import kết nối
+// const route = require('./routes');
+const adminRoutes = require('../src/routes/admin');
+const clientRoutes = require('../src/routes/client');
 
 const app = express();
 
 // Cấu hình thư mục public để phục vụ các tệp tĩnh
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/users', express.static(path.join(__dirname, 'public/users')));
+app.use('/admin', express.static(path.join(__dirname, 'public/admin')));
+
+
+//parse dữ liệu
+app.use(
+  express.urlencoded({
+    extended: true,
+  }),
+);
+app.use(express.json());
 
 // Thiết lập Handlebars làm template engine
 app.engine('hbs', engine({ extname: '.hbs' }));
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
-
-//Kết nối database
+app.set('views', path.join(__dirname, '/app/views'));
 
 
-//Kết nối routes
-route(app);
+// Sử dụng routes
+adminRoutes(app);
+clientRoutes(app);
 
 // Chạy server
 const PORT = process.env.PORT || 3000;

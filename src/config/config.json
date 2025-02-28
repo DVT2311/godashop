@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "123",
-    "database": "godashop_backup",
+    "password": null,
+    "database": "godashop_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "port": "3307"

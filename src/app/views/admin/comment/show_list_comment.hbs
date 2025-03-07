@@ -28,26 +28,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>a@gmail.com</td>
-                                <td>Nguyễn Văn A </td>
-                                <td>4</td>
-                                <td>2019-08-12</td>
-                                <td>ABC</td>
-                                <td><input type="button" onclick="Delete('25');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td>{{email}}</td>
+                                <td>{{fullname}}</td>
+                                <td>{{star}}</td>
+                                <td>{{created_date}}</td>
+                                <td>{{description}}</td>
+                                <td>
+                                    <a href="/admin/comment/delete_comment?id={{id}}" onclick="Delete('25');"
+                                        class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>b@gmail.com</td>
-                                <td>Nguyễn Văn B </td>
-                                <td>4</td>
-                                <td>2019-08-13</td>
-                                <td>XYZ</td>
-                                <td><input type="button" onclick="Delete('25');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
+
                         </tbody>
                     </table>
                 </div>

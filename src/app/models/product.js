@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   return sequelize.define('product', {
     id: {
       autoIncrement: true,
@@ -26,15 +26,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     discount_percentage: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     },
     discount_from_date: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: true
     },
     discount_to_date: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: true
     },
     featured_image: {
       type: DataTypes.STRING(100),
@@ -54,7 +54,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     brand_id: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
         model: 'brand',
         key: 'id'

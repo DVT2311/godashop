@@ -5,4 +5,7 @@ const commentController = require('../../../app/controllers/admin/CommentControl
 
 router.get('/', commentController.show_list_comment);
 
+router.get('/delete_comment', commentController.delete_comment);
+
+
 module.exports = router;

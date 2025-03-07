@@ -8,8 +8,8 @@
         </ol>
         <!-- DataTables Example -->
         <div class="action-bar">
-            <input type="submit" class="btn btn-primary btn-sm" value="Thêm" name="add">
-            <input type="submit" class="btn btn-danger btn-sm" value="Xóa" name="delete">
+            <a href="/admin/product/add_product" class="btn btn-primary btn-sm">Thêm</a>
+            <a href="/admin/product/add_product" class="btn btn-danger btn-sm">Xóa</a>
         </div>
         {{!--
         <pre>{{{json products}}}</pre> --}}
@@ -51,15 +51,25 @@
                                 <td>{{this.sale_price}}</td>
                                 <td>{{this.inventory_qty}}</td>
                                 <td>{{this.star}}</td>
-                                <td>{{this.featured}}</td>
+                                <td>
+                                    {{this.featured}}
+                                </td>
                                 <td>{{this.category_id}} </td>
                                 <td>{{this.created_date}}</td>
                                 <td><a href="/admin/pages/comment/list.html">Đánh giá</a></td>
                                 <td><a href="/admin/pages/image/list.html">Hình ảnh</a></td>
-                                <td><input type="button" onclick="Edit('25');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('25');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td>
+                                    <a href="/admin/product/edit_product?id={{this.id}}" onclick="Edit('25');"
+                                        class="btn btn-warning btn-sm">Sửa</a>
+                                    {{!-- <input type="button" onclick="Edit('25');" value="Sửa"
+                                        class="btn btn-warning btn-sm"> --}}
+                                </td>
+                                <td>
+                                    <a href="/admin/product/delete_product?id={{this.id}}" onclick="Delete('25');"
+                                        class="btn btn-danger btn-sm">Xóa</a>
+                                    {{!-- <input type="button" onclick="Delete('25');" value="Xóa"
+                                        class="btn btn-danger btn-sm"> --}}
+                                </td>
                             </tr>
                             {{!-- {{/dataValues}} --}}
                             {{else}}

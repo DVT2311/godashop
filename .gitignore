@@ -1,5 +1,6 @@
 .vscode
 
-src/public/css/
-node_module/
+src/public/admin/css/
+src/public/users/css/
+node_modules/
 .env

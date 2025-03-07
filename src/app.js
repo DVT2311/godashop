@@ -20,8 +20,14 @@ app.use(
 );
 app.use(express.json());
 
+
 // Thiết lập Handlebars làm template engine
-app.engine('hbs', engine({ extname: '.hbs' }));
+app.engine('hbs', engine({
+  extname: '.hbs',
+  helpers: {
+    eq: (a, b) => a === b
+  },
+}));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, '/app/views'));
 

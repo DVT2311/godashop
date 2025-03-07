@@ -9,54 +9,51 @@
         </ol>
         <!-- /form -->
         {{!-- enctype="multipart/form-data" --}}
-        <form method="post" action="/admin/product/post_product" enctype="multipart/form-data">
-            <div class="form-group row">
-                <label class="col-md-12 control-label" for="barcode">Barcode</label>
+        <form method="post" action="/admin/product/update_product" enctype="multipart/form-data">
+            <div class="form-group row" hidden>
+                <label class="col-md-12 control-label" for="id">Id </label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="barcode" id="barcode" type="text" value="" class="form-control">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-md-12 control-label" for="sku">Sku</label>
-                <div class="col-md-9 col-lg-6">
-                    <input name="sku" id="sku" type="text" value="" class="form-control">
+                    <input name="id" id="id" type="text" value="{{data_product.id}}" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="name">Tên </label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="name" id="name" type="text" value="" class="form-control">
+                    <input name="name" id="name" type="text" value="{{data_product.name}}" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="price">Giá bán lẻ </label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="price" id="price" type="text" value="" class="form-control">
+                    <input name="price" id="price" type="text" value="{{data_product.price}}" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="discount_percentage">Phần trăm giảm giá</label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="discount_percentage" id="discount_percentage" type="text" value=""
-                        class="form-control">
+                    <input name="discount_percentage" id="discount_percentage" type="text"
+                        value="{{data_product.discount_percentage}}" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="discount_from_date">Bắt đầu từ ngày</label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="discount_from_date" id="discount_from_date" type="date" value="" class="form-control">
+                    <input name="discount_from_date" id="discount_from_date" type="date"
+                        value="{{data_product.discount_from_date}}" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="discount_to_date">Kết thúc vào ngày</label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="discount_to_date" id="discount_to_date" type="date" value="" class="form-control">
+                    <input name="discount_to_date" id="discount_to_date" type="date"
+                        value="{{data_product.discount_to_date}}" class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="inventory_qty">Lượng tồn</label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="inventory_qty" id="inventory_qty" type="text" value="" class="form-control">
+                    <input name="inventory_qty" id="inventory_qty" type="text" value="{{data_product.inventory_qty}}"
+                        class="form-control">
                 </div>
             </div>
 
@@ -83,13 +80,15 @@
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="created_date">Ngày tạo</label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="created_date" id="created_date" type="date" value="" class="form-control">
+                    <input name="created_date" id="created_date" type="date" value="{{data_product.created_date}}"
+                        class="form-control">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="featured">Nổi bật</label>
                 <div class="col-md-9 col-lg-6">
-                    <input type="checkbox" value="1" name="featured">
+                    <input type="checkbox" value="1" name="featured" {{#if (eq data_product.featured 1) }} checked
+                        {{/if}}>
                 </div>
             </div>
             <div class="form-group row">
@@ -101,18 +100,19 @@
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="description">Mô tả</label>
                 <div class="col-md-12">
-                    <textarea name="description" id="description" rows="10" cols="80"></textarea>
+                    <textarea name="description" id="description" rows="10"
+                        cols="80">{{data_product.description}}</textarea>
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-md-12 control-label" for="star">Sao</label>
                 <div class="col-md-9 col-lg-6">
-                    <input name="star" id="star" type="text" value="" class="form-control">
+                    <input name="star" id="star" type="text" value="{{data_product.star}}" class="form-control">
                 </div>
             </div>
 
             <div class="form-action">
-                <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
+                <button type="submit" class="btn btn-primary btn-sm">Cập nhập</button>
             </div>
         </form>
         <script type="text/javascript" src="/admin/vendor/ckeditor/ckeditor.js"></script>

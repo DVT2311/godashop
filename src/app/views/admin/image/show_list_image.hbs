@@ -24,18 +24,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td><img src="/admin/images/suaTamSandrasShowerGel.jpg"></td>
+                                <td><img src="/admin/images/{{name}}"></td>
                                 <td><input type="button" onclick="Delete('25');" value="Xóa"
                                         class="btn btn-danger btn-sm"></td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td><img src="/admin/images/boKemTriMunSakura.jpg"></td>
-                                <td><input type="button" onclick="Delete('25');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

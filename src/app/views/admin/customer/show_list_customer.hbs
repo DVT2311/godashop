@@ -9,8 +9,8 @@
         </ol>
         <!-- DataTables Example -->
         <div class="action-bar">
-            <input type="submit" class="btn btn-primary btn-sm" value="Thêm" name="add">
-            <input type="submit" class="btn btn-danger btn-sm" value="Xóa" name="delete">
+            <a href="/admin/customer/add_customer" class="btn btn-primary btn-sm" name="add">Thêm</a>
+            <a href="/admin/customer/delete_customer" class="btn btn-danger btn-sm" name="add">Xóa</a>
         </div>
         <div class="card mb-3">
             <div class="card-body">
@@ -26,42 +26,33 @@
                                 <th>Địa chỉ</th>
                                 <th>Tên người nhận</th>
                                 <th>Điện thoại người nhận</th>
-                                <th></th>
+                                <th>Trạng thái</th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>Nguyễn Văn A</td>
-                                <td>a@gmail.com</td>
-                                <td>0912921099</td>
-                                <td>google</td>
-                                <td>278 hòa bình, hiệp tân, tân phú, tp.HCM</td>
-                                <td>Nguyễn Văn B</td>
-                                <td>0123456789</td>
-                                <td>Đã kích hoạt</td>
-                                <td> <input type="button" onclick="Edit('1');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('1');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.email}}</td>
+                                <td>{{this.mobile}}</td>
+                                <td>{{this.login_by}}</td>
+                                <td>{{this.housenumber_street}}</td>
+                                <td>{{this.shipping_name}}</td>
+                                <td>{{this.shipping_mobile}}</td>
+                                <td>{{#if (eq2 this.is_active)}}Đã kích hoạt{{else}}Chưa kích hoạt{{/if}}</td>
+                                <td>
+                                    <a href="/admin/customer/edit_customer?id={{this.id}}" onclick="Edit('1');"
+                                        class="btn btn-danger btn-sm">Sửa</a>
+                                </td>
+                                <td>
+                                    <a href="/admin/customer/delete_customer?id={{this.id}}" onclick="Delete('1');"
+                                        class="btn btn-warning btn-sm">Xóa</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Nguyễn Văn C</td>
-                                <td>b@gmail.com</td>
-                                <td>0912921098</td>
-                                <td>form</td>
-                                <td>211 hòa bình, hiệp tân, tân phú, tp.HCM</td>
-                                <td>Nguyễn Văn D</td>
-                                <td>0123456788</td>
-                                <td>Chưa kích hoạt</td>
-                                <td> <input type="button" onclick="Edit('2');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('2');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

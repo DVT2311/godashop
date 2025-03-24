@@ -9,8 +9,8 @@
         </ol>
         <!-- DataTables Example -->
         <div class="action-bar">
-            <input type="submit" class="btn btn-primary btn-sm" value="Thêm" name="add">
-            <input type="submit" class="btn btn-danger btn-sm" value="Xóa" name="delete">
+            <a href="/admin/shipping_fee/add_shipping_fee" class="btn btn-primary btn-sm">Thêm</a>
+            <a href="/admin/shipping_fee/delete_shipping_fee" class="btn btn-danger btn-sm">Xóa</a>
         </div>
         <div class="card mb-3">
             <div class="card-body">
@@ -28,33 +28,21 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>Hà Nội</td>
-                                <td>30,000 đ</td>
-                                <td> <input type="button" onclick="Edit('1');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td> <input type="button" onclick="Delete('1');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.price}}</td>
+                                <td>
+                                    <a href="/admin/shipping_fee/edit_shipping_fee?id={{this.id}}" onclick="Edit('1');"
+                                        class="btn btn-warning btn-sm">Sửa</a>
+                                </td>
+                                <td>
+                                    <a href="/admin/shipping_fee/delete_shipping_fee?id={{this.id}}"
+                                        onclick="Delete('1');" class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <th><input type="checkbox">
-                                <td>TP.Hồ Chí Minh</td>
-                                <td>50,000 đ</td>
-                                <td> <input type="button" onclick="Edit('2');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td> <input type="button" onclick="Delete('1');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <th><input type="checkbox">
-                                <td>Long An</td>
-                                <td>50,000 đ</td>
-                                <td> <input type="button" onclick="Edit('2');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td> <input type="button" onclick="Delete('1');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

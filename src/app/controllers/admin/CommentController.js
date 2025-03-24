@@ -8,6 +8,7 @@ let show_list_comment = async (req, res) => {
     });
     res.render('admin/comment/show_list_comment', {
         data: getListComment,
+        username: req.session.user.username,
         layout: 'admin'
     })
 }
@@ -26,6 +27,7 @@ let delete_comment = async (req, res) => {
         });
         res.render('admin/comment/show_list_comment', {
             data: getListComment,
+            username: req.session.user.username,
             layout: 'admin'
         })
     } catch (e) {

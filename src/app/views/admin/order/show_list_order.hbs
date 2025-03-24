@@ -40,23 +40,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>#112</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>0932538468</td>
-                                <td>nguyenvana@gmail.com</td>
-                                <td>Đang xử lý</td>
-                                <td>2019-03-10 15:35:59 </td>
-                                <td>Nguyễn Thị C</td>
-                                <td>0123456789</td>
-                                <td>COD</td>
-                                <td>2,000,000 đ</td>
-                                <td>50,000 đ</td>
-                                <td>2,050,000 đ</td>
-                                <td>278 Hòa Bình, Hiệp Tân, Tân Phú, TP.HCM</td>
-                                <td>2019-03-13</td>
-                                <td>Nguyễn Hữu Lộc</td>
+                                <td>{{this.id}}</td>
+                                <td>{{this.customer.name}}</td>
+                                <td>{{this.customer.mobile}}</td>
+                                <td>{{this.customer.email}}</td>
+                                <td>{{this.order_status.description}}</td>
+                                <td>{{this.created_date}}</td>
+                                <td>{{this.shipping_fullname}}</td>
+                                <td>{{this.shipping_mobile}}</td>
+                                <td>{{this.payment_method}}</td>
+                                <td>{{this.total_price}}</td>
+                                <td>{{this.shipping_fee}}</td>
+                                <td>{{this.total}}</td>
+                                <td>{{this.shipping_housenumber_street}}</td>
+                                <td>{{this.delivered_date}}</td>
+                                <td>{{this.staff.name}}</td>
                                 <td> <input type="button" onclick="Confirm('1');" value="Xác nhận"
                                         class="btn btn-info btn-sm"></td>
                                 <td> <input type="button" onclick="Edit('1');" value="Sửa"
@@ -64,29 +65,7 @@
                                 <td> <input type="button" onclick="DELETE('1');" value="Xóa"
                                         class="btn btn-danger btn-sm"></td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>#113</td>
-                                <td>Nguyễn Văn B</td>
-                                <td>0932538468</td>
-                                <td>nguyenvanb@gmail.com</td>
-                                <td>Đang xử lý</td>
-                                <td>2019-03-10 15:35:59 </td>
-                                <td>Nguyễn Thị D</td>
-                                <td>0123456789</td>
-                                <td>Bank</td>
-                                <td>3,000,000 đ</td>
-                                <td>50,000 đ</td>
-                                <td>3,050,000 đ</td>
-                                <td>278 Hòa Bình, Hiệp Tân, Tân Phú, TP.HCM</td>
-                                <td>2019-03-13</td>
-                                <td>Nguyễn Văn T</td>
-                                <td> </td>
-                                <td> <input type="button" onclick="Edit('1');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td> <input type="button" onclick="DELETE('1');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
 
 

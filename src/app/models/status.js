@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('status', {
+module.exports = function (sequelize, DataTypes) {
+  const Status = sequelize.define('status', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -30,4 +30,9 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Định nghĩa quan hệ trong associate()
+  Status.associate = (models) => {
+    Status.hasMany(models.order, { as: "orders", foreignKey: "order_status_id" });
+  };
+  return Status;
 };

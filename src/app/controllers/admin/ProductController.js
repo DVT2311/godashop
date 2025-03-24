@@ -11,12 +11,12 @@ const show_list_product = async (req, res, next) => {
     try {
         // Lấy tất cả dữ liệu từ ViewProduct
         const products = await db.product.findAll()
-
         const processedProducts = products.map(product => {
-            let price = product.price
-            let discount_percentage = product.discount_percentage
-            let sale_price = discount_percentage ? price * (1 - discount_percentage / 100) : price
-            let created_date = product.created_date ? product.created_date : null
+            let price = product.price;
+            let discount_percentage = product.discount_percentage;
+            let sale_price = discount_percentage ? price * (1 - discount_percentage / 100) : price;
+            let date = new Date(product.created_date);
+
 
             //Convert price to VND
             formatPrice = price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
@@ -29,17 +29,23 @@ const show_list_product = async (req, res, next) => {
             if (featured) {
                 featured = "Có"
             }
+
+            if (date) {
+                var formattedDate = date.toLocaleString('sv-SE').replace('T', ' ');
+            }
             return {
                 ...product.dataValues,
                 price: formatPrice,
                 sale_price: formatSale_price,
                 featured: featured,
+                created_date: formattedDate,
             }
         })
         res.render('admin/product/list_product',
             {
                 layout: 'admin',
-                products: processedProducts
+                products: processedProducts,
+                username: req.session.user.username,
             }
         )
     } catch (error) {
@@ -48,7 +54,7 @@ const show_list_product = async (req, res, next) => {
     }
 }
 
-const add_product = async (rep, res, next) => {
+const add_product = async (req, res, next) => {
     try {
         let list_category = await db.category.findAll({
             raw: true
@@ -59,7 +65,8 @@ const add_product = async (rep, res, next) => {
         res.render('admin/product/add_product', {
             layout: 'admin',
             data_category: list_category,
-            data_brand: list_brand
+            data_brand: list_brand,
+            username: req.session.user.username,
         })
     } catch (e) {
         res.status(500).send(e);
@@ -129,6 +136,7 @@ let post_product = async (req, res) => {
             {
                 layout: 'admin',
                 products: processedProducts,
+                username: req.session.user.username,
             })
         // return res.send('okok')
     } catch (e) {
@@ -158,6 +166,7 @@ const edit_product = async (req, res, next) => {
             data_product: list_product,
             data_category: list_category,
             data_brand: list_brand,
+            username: req.session.user.username,
         })
     } catch (e) {
         res.status(500).send(e);
@@ -242,7 +251,8 @@ let update_product = async (req, res) => {
         res.render('admin/product/list_product',
             {
                 layout: 'admin',
-                products: processedProducts
+                products: processedProducts,
+                username: req.session.user.username,
             }
         )
 
@@ -253,12 +263,10 @@ let update_product = async (req, res) => {
 
 let delete_product = async (req, res) => {
     let getId = req.query.id;
-    console.log(getId)
     let Product = await db.product.findByPk(getId, {
         raw: true
     })
     let ImagePath = path.join(__dirname, "../../../public/admin/images/", Product.featured_image);
-    console.log('Duong dan san pham', ImagePath)
     if (fs.existsSync(ImagePath)) {
         fs.unlinkSync(ImagePath); // Xóa ảnh cũ
     }
@@ -297,7 +305,8 @@ let delete_product = async (req, res) => {
     res.render('admin/product/list_product',
         {
             layout: 'admin',
-            products: processedProducts
+            products: processedProducts,
+            username: req.session.user.username,
         }
     )
 }

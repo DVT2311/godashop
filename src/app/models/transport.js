@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('transport', {
+module.exports = function (sequelize, DataTypes) {
+  const Transport = sequelize.define('transport', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -41,4 +41,9 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Định nghĩa quan hệ trong associate()
+  Transport.associate = (models) => {
+    Transport.belongsTo(models.province, { as: "province", foreignKey: "province_id" });
+  };
+  return Transport;
 };

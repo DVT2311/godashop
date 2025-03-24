@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('action', {
+module.exports = function (sequelize, DataTypes) {
+  const Action = sequelize.define('action', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -30,4 +30,11 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Định nghĩa quan hệ trong associate()
+  Action.associate = (models) => {
+    Action.belongsToMany(models.role, { as: 'role_id_roles', through: models.role_action, foreignKey: "action_id", otherKey: "role_id" });
+
+    Action.hasMany(models.role_action, { as: 'role_actions', foreignKey: "action_id" });
+  };
+  return Action;
 };

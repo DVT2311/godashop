@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('comment', {
+module.exports = function (sequelize, DataTypes) {
+  const Comment = sequelize.define('comment', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -57,4 +57,9 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Định nghĩa quan hệ trong associate()
+  Comment.associate = (models) => {
+    Comment.belongsTo(models.product, { foreignKey: "product_id", as: "product" });
+  };
+  return Comment;
 };

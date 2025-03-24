@@ -21,7 +21,7 @@
 
 <body id="page-top">
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-        <a class="navbar-brand mr-1" href="/admin">Mỹ Phẩm YouT</a>
+        <a class="navbar-brand mr-1" href="/admin/dashboard">Mỹ Phẩm YouT</a>
         <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
             <i class="fas fa-bars"></i>
         </button>
@@ -29,7 +29,7 @@
         <!-- Navbar -->
         <ul class="navbar-nav ml-auto">
             <li class="nav-item no-arrow text-white">
-                <span>Chào Đinh Văn Tam</span> |
+                <span id="username">Chào {{username}}</span> |
                 <a class="text-white nounderline" href="#" data-toggle="modal" data-target="#logoutModal">Thoát</a>
             </li>
         </ul>
@@ -38,7 +38,7 @@
         <!-- Sidebar -->
         <ul class="sidebar navbar-nav">
             <li class="nav-item active">
-                <a class="nav-link" href="/admin"><i class="fas fa-fw fa-tachometer-alt"></i>
+                <a class="nav-link" href="/admin/dashboard"><i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Tổng quan</span></a>
             </li>
             <li class="nav-item dropdown">
@@ -123,6 +123,8 @@
                     <a class="dropdown-item" href="/admin/permission">Danh sách vai trò</a>
                     <a class="dropdown-item" href="/admin/permission/add_role">Thêm vai trò</a>
                     <a class="dropdown-item" href="/admin/permission/actions">Danh sách tác vụ</a>
+                    <a class="dropdown-item" href="/admin/permission/add_action">Thêm tác vụ</a>
+
                 </div>
             </li>
             <li class="nav-item">
@@ -182,7 +184,7 @@
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-                    <a class="btn btn-primary" href="login.html">Thoát</a>
+                    <a class="btn btn-primary" href="/admin/logout">Thoát</a>
                 </div>
             </div>
         </div>
@@ -200,6 +202,7 @@
     <!-- Demo scripts for this page-->
     <script src="/admin/js/demo/datatables-demo.js"></script>
     <script src="/admin/js/admin.js"></script>
+
 </body>
 
 </html>

@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 router.get('/', (req, res) => {
-    res.render('chinh-sach-thanh-toan');
+    res.render('users/chinh-sach-thanh-toan');
 });
 
 module.exports = router;

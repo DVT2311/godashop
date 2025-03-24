@@ -1,0 +1,39 @@
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Quản lý</a>
+            </li>
+            <li class="breadcrumb-item active">Giao hàng</li>
+        </ol>
+        <!-- /.row -->
+        <!-- form -->
+        <form method="post" action="/admin/shipping_fee/post_edit_shipping_fee">
+            <div class="form-group">
+                <label class="col-md-12 control-label" for="name">Tỉnh/thành phố</label>
+                <div class="col-md-9 col-lg-6">
+                    <select name="province_id" class="form-control province" required=""
+                        oninvalid="this.setCustomValidity('Vui lòng chọn Tỉnh / thành phố')"
+                        oninput="this.setCustomValidity('')">
+                        <option value="">Tỉnh / thành phố</option>
+                        {{#each data_AllProvince}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                        <option value="{{data_province.id}}" selected>{{data_province.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-9 col-lg-6 control-label" for="price">Phí giao hàng</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="price" id="price" type="text" value="{{data_price.price}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-action">
+                <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
+            </div>
+        </form>
+        <!-- /form -->
+    </div>
+    <!-- /.container-fluid -->

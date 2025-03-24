@@ -1,0 +1,79 @@
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Quản lý</a>
+            </li>
+            <li class="breadcrumb-item active">Nhân viên</li>
+        </ol>
+        <!-- /form -->
+        <form method="post" action="/admin/staff/post_edit_staff">
+            <div class="form-group row" hidden>
+                <label class="col-md-12 control-label" for="id">Id</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="id" id="id" type="text" value="{{data.id}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="fullname">Họ Và Tên</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="fullname" id="fullname" type="text" value="{{data.name}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="username">Tên Đăng Nhập</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="username" id="username" type="text" value="{{data.username}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="password">Mật Khẩu</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="password" id="password" type="password" value="" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="mobile">Số Điện Thoại</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="mobile" id="mobile" type="text" value="{{data.mobile}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="email">Email</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="email" id="email" type="text" value="{{data.email}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="role">Kích hoạt</label>
+                <div class="col-md-9 col-lg-6">
+                    <select class="form-control" name="role_id">
+                        {{#each data_role}}
+                        <option value="{{this.id}}" {{#if (eq this.id ../data.role_id)}}selected{{/if}}>{{this.name}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="is_active">Vai trò</label>
+                <div class="col-md-9 col-lg-6">
+                    <input type="hidden" id="hidden_is_active" name="is_active" value="0">
+                    <input type="checkbox" id="is_active" name="is_active" value="1" {{#if (eq2
+                        data.is_active)}}checked{{/if}}>
+                </div>
+            </div>
+            <div class="form-action">
+                <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
+            </div>
+        </form>
+        <!-- /form -->
+    </div>
+    <!-- /.container-fluid -->
+
+    <script>
+        document.getElementById('is_active').addEventListener('change', function () {
+            document.getElementById('hidden_is_active').disabled = this.checked;
+        });
+    </script>

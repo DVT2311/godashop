@@ -9,8 +9,8 @@
         </ol>
         <!-- DataTables Example -->
         <div class="action-bar">
-            <input type="submit" class="btn btn-primary btn-sm" value="Thêm" name="add">
-            <input type="submit" class="btn btn-danger btn-sm" value="Xóa" name="delete">
+            <a href="/admin/category/add_category" class="btn btn-primary btn-sm">Thêm</a>
+            <a href="/admin/category/delete_category" class="btn btn-danger btn-sm">Xóa</a>
         </div>
         <div class="card mb-3">
             <div class="card-body">
@@ -27,54 +27,20 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>Kem Chống Nắng</td>
-                                <td> <input type="button" onclick="Edit('1');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('1');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td>{{this.name}}</td>
+                                <td>
+                                    <a href="/admin/category/edit_category?id={{this.id}}" onclick="Edit('1');"
+                                        class="btn btn-warning btn-sm">Sửa</a>
+                                </td>
+                                <td>
+                                    <a href="/admin/category/delete_category?id={{this.id}}" onclick="Delete('1');"
+                                        class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Kem Dưỡng Da</td>
-                                <td> <input type="button" onclick="Edit('2');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('2');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Kem Trị Mụn</td>
-                                <td> <input type="button" onclick="Edit('3');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('3');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Kem Trị Thâm Nám</td>
-                                <td> <input type="button" onclick="Edit('4');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('4');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Sữa Rửa Mặt</td>
-                                <td> <input type="button" onclick="Edit('5');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('5');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Sữa Tắm</td>
-                                <td> <input type="button" onclick="Edit('6');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('6');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('newsletter', {
+module.exports = function (sequelize, DataTypes) {
+  const NewsLetter = sequelize.define('newsletter', {
     email: {
       type: DataTypes.STRING(100),
       allowNull: false,
@@ -21,4 +21,9 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Định nghĩa quan hệ trong associate()
+  NewsLetter.associate = (models) => {
+
+  };
+  return NewsLetter;
 };

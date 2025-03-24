@@ -5,7 +5,8 @@ const router = express.Router();
 // newsController.index();
 
 router.get('/', (req, res) => {
-    res.render('chinh-sach-doi-tra');
+    console.log('okok')
+    res.render('users/chinh-sach-doi-tra');
 });
 
 module.exports = router;

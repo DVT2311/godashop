@@ -9,8 +9,8 @@
         </ol>
         <!-- DataTables Example -->
         <div class="action-bar">
-            <input type="submit" class="btn btn-primary btn-sm" value="Thêm" name="add">
-            <input type="submit" class="btn btn-danger btn-sm" value="Xóa" name="delete">
+            <a href="/admin/permission/add_role" class="btn btn-primary btn-sm">Thêm</a>
+            <a href="/admin/permission/delete_role" class="btn btn-danger btn-sm">Xóa</a>
         </div>
         <div class="card mb-3">
             <div class="card-body">
@@ -19,28 +19,28 @@
                         <thead>
                             <tr>
                                 <th><input type="checkbox" onclick="checkAll(this)">
+                                <th style="display: none;">abc</th>
                                 <th>Tên </th>
                                 <th></th>
                                 <th></th>
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>Quản trị</td>
-                                <td> <input type="button" onclick="Edit('1');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('1');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td style="display: none;">{{this.name}}</td>
+                                <td>{{this.name}}</td>
+                                <td>
+                                    <a href="/admin/permission/edit_role?id={{this.id}}" onclick="Edit('1');"
+                                        class="btn btn-warning btn-sm">Sửa</a>
+                                </td>
+                                <td>
+                                    <a href="/admin/permission/delete_role?id={{this.id}}" onclick="Delete('1');"
+                                        class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Nhân viên</td>
-                                <td> <input type="button" onclick="Edit('2');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('2');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

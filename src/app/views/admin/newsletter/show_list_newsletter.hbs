@@ -24,18 +24,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>a@gmail.com</td>
-                                <td><input type="button" onclick="Delete('25');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td>{{this.email}}</td>
+                                <td>
+                                    <a href="/admin/newsletter/delete_newsletter/{{this.email}}" onclick="Delete('25');"
+                                        class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>b@gmail.com</td>
-                                <td><input type="button" onclick="Delete('25');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

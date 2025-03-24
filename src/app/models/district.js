@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('district', {
+module.exports = function (sequelize, DataTypes) {
+  const District = sequelize.define('district', {
     id: {
       type: DataTypes.STRING(5),
       allowNull: false,
@@ -44,4 +44,11 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Định nghĩa quan hệ trong associate()
+  District.associate = (models) => {
+    District.hasMany(models.ward, { foreignKey: "district_id", as: "wards" });
+
+    District.belongsTo(models.province, { foreignKey: "province_id", as: "province" });
+  };
+  return District;
 };

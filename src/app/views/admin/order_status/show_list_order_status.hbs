@@ -20,42 +20,16 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
-                                <td>1</td>
-                                <td>Đã đặt hàng</td>
-                                <td> <input type="button" onclick="Edit('1');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
+                                <td>{{this.id}}</td>
+                                <td>{{this.description}}</td>
+                                <td>
+                                    <a href="/admin/order_status/edit_order_status?id={{this.id}}" onclick="Edit('1');"
+                                        class="btn btn-warning btn-sm">Sửa</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Đã xác nhận đơn hàng</td>
-                                <td> <input type="button" onclick="Edit('2');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Hoàn tất đóng gói</td>
-                                <td> <input type="button" onclick="Edit('3');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Đang giao hàng</td>
-                                <td> <input type="button" onclick="Edit('4');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Đã giao hàng</td>
-                                <td> <input type="button" onclick="Edit('5');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>Đơn hàng bị hủy</td>
-                                <td> <input type="button" onclick="Edit('6');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

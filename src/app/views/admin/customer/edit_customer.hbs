@@ -1,0 +1,134 @@
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Quản lý</a>
+            </li>
+            <li class="breadcrumb-item active">Khách hàng</li>
+        </ol>
+        <!-- /form -->
+        {{!-- enctype="multipart/form-data" --}}
+        <form method="post" action="/admin/customer/post_edit_customer">
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="fullname">Tên</label>
+                <div class="col-md-9 col-lg-6">
+                    <input type="hidden" name="id" value="{{data.id}}" class="form-control">
+                    <input name="fullname" id="fullname" type="text" value="{{data.name}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="email">Email</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="email" id="email" type="text" value="{{data.email}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="login_by">Đăng nhập bằng</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="login_by" id="login_by" type="text" value="{{data.login_by}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="mobile">Số Điện Thoại</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="mobile" id="mobile" type="text" value="{{data.mobile}}" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="">Địa chỉ</label>
+                <div class="col-sm-4">
+                    <select id="province" name="province" class="form-control">
+                        <option value="">Tỉnh / thành phố</option>
+                        {{#each data_AllProvince}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                        <option value="{{data_ProvinceById.id}}" selected>{{data_ProvinceById.name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select id="district" name="district" class="form-control">
+                        <option value="">Quận / huyện</option>
+                        {{#each data_AllDistrictById}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                        <option value="{{data_DistrictById.id}}" selected>{{data_DistrictById.name}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select id="ward" name="ward" class="form-control">
+                        <option value="">Phường / xã</option>
+                        <option value="{{data_WardById.id}}" selected>{{data_WardById.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-9 col-lg-6">
+                    <input type="text" class="form-control" placeholder="Số nhà, đường" name="housenumber_street"
+                        value="{{data.housenumber_street}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="mobile">Tên người nhận</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="shipping_name" id="shipping_name" type="text" value="{{data.shipping_name}}"
+                        class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="mobile">Số điện thoại người nhận</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="shipping_mobile" id="shipping_mobile" type="tel" value="{{data.shipping_mobile}}"
+                        class="form-control">
+                </div>
+            </div>
+
+            <div class="form-action">
+                <button class="btn btn-primary btn-sm">Cập nhập</button>
+            </div>
+        </form>
+        <!-- /form -->
+    </div>
+    <!-- /.container-fluid -->
+
+    <script>
+        document.getElementById("province").addEventListener("change", function () {
+            let provinceId = this.value;
+            let districtDropdown = document.getElementById("district");
+            districtDropdown.innerHTML = "<option value=''>Chọn quận/huyện</option>";
+
+            if (provinceId) {
+                fetch(`http://localhost:3000/admin/customer/districts/${provinceId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(district => {
+                            let option = document.createElement("option");
+                            option.value = district.id;
+                            option.textContent = district.name;
+                            districtDropdown.appendChild(option);
+                        });
+                    });
+            }
+        });
+
+        document.getElementById("district").addEventListener("change", function () {
+            let districtId = this.value;
+            let wardDropdown = document.getElementById("ward");
+            wardDropdown.innerHTML = "<option value=''>Chọn phường/xã</option>";
+
+            if (districtId) {
+                fetch(`http://localhost:3000/admin/customer/wards/${districtId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(ward => {
+                            let option = document.createElement("option");
+                            option.value = ward.id;
+                            option.textContent = ward.name;
+                            wardDropdown.appendChild(option);
+                        });
+                    });
+            }
+        });
+    </script>

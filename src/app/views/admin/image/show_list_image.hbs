@@ -28,8 +28,10 @@
                             <tr>
                                 <td><input type="checkbox"></td>
                                 <td><img src="/admin/images/{{name}}"></td>
-                                <td><input type="button" onclick="Delete('25');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td>
+                                    <a href="/admin/image/delete_image?id={{id}}" onclick="Delete('25');"
+                                        class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -38,7 +40,7 @@
             </div>
 
         </div>
-        <form action="">
+        <form action="/admin/image/post_image" enctype="multipart/form-data" method="POST">
             <div class="row">
                 <div class="col-md-12">
                     <label>Upload hình</label>
@@ -46,8 +48,18 @@
             </div>
 
             <div class="row form-group">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <input type="file" name="image" id="image" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="product_id">Danh mục </label>
+                <div class="col-md-9 col-lg-6">
+                    <select name="product_id" id="product_id" class="form-control">
+                        {{#each data_product}}
+                        <option value="{{this.id}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
                 </div>
             </div>
             <div class="row form-group">

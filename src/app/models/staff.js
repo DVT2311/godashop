@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('staff', {
+module.exports = function (sequelize, DataTypes) {
+  const Staff = sequelize.define('staff', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -89,4 +89,10 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Thêm phương thức associate()
+  Staff.associate = (models) => {
+    Staff.belongsTo(models.role, { as: "role", foreignKey: "role_id" });
+    Staff.hasMany(models.order, { as: "orders", foreignKey: "staff_id" });
+  }
+  return Staff;
 };

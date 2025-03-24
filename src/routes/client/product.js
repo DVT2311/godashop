@@ -1,11 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
-// const siteController = require('../app/controllers/SiteController');
-// newsController.index();
+const productController = require('../../app/controllers/client/ProductController');
 
-router.get('/', (req, res) => {
-    res.render('users/san-pham')
-})
+router.get('/filter-product', productController.filterProductByCategory)
+
+router.get('/', productController.show_list_product)
 
 module.exports = router;

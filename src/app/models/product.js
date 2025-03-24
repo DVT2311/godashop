@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
-  return sequelize.define('product', {
+  const Product = sequelize.define('product', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -114,4 +114,19 @@ module.exports = function (sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Định nghĩa quan hệ trong associate()
+  Product.associate = (models) => {
+    Product.belongsToMany(models.order, { as: 'order_id_orders', through: models.order_item, foreignKey: "product_id", otherKey: "order_id" });
+
+    Product.belongsTo(models.brand, { as: 'brand', foreignKey: "brand_id" });
+
+    Product.belongsTo(models.category, { as: 'category', foreignKey: "category_id" });
+
+    Product.hasMany(models.comment, { as: 'comments', foreignKey: "product_id" });
+
+    Product.hasMany(models.image_item, { as: 'image_items', foreignKey: "product_id" });
+
+    Product.hasMany(models.order_item, { as: 'order_items', foreignKey: "product_id" });
+  }
+  return Product;
 };

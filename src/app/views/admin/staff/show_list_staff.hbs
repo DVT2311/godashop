@@ -9,8 +9,8 @@
         </ol>
         <!-- DataTables Example -->
         <div class="action-bar">
-            <input type="submit" class="btn btn-primary btn-sm" value="Thêm" name="add">
-            <input type="submit" class="btn btn-danger btn-sm" value="Xóa" name="delete">
+            <a href="/admin/staff/add_staff" class="btn btn-primary btn-sm">Thêm</a>
+            <a href="/admin/staff/delete_staff" class="btn btn-danger btn-sm">Xóa</a>
         </div>
         <div class="card mb-3">
             <div class="card-body">
@@ -29,30 +29,24 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {{#each data}}
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>Nguyễn Hữu Lộc</td>
-                                <td>admin</td>
-                                <td>nguyenhuulocla2006@gmail.com</td>
-                                <td>0932538468</td>
-                                <td>Quản trị</td>
-                                <td> <input type="button" onclick="Edit('1');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('1');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.username}}</td>
+                                <td>{{this.email}}</td>
+                                <td>{{this.mobile}}</td>
+                                <td>{{this.role.name}}</td>
+                                <td>
+                                    <a href="/admin/staff/edit_staff?id={{this.id}}" onclick="Edit('1');"
+                                        class="btn btn-warning btn-sm">Sửa</a>
+                                </td>
+                                <td>
+                                    <a href="/admin/staff/delete_staff?id={{this.id}}" onclick="Delete('1');"
+                                        class="btn btn-danger btn-sm">Xóa</a>
+                                </td>
                             </tr>
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>Nguyễn Văn Lệ</td>
-                                <td>nguyenvanle</td>
-                                <td>nguyenvanle@gmail.com</td>
-                                <td>01675288916</td>
-                                <td>Nhân viên</td>
-                                <td> <input type="button" onclick="Edit('2');" value="Sửa"
-                                        class="btn btn-warning btn-sm"></td>
-                                <td><input type="button" onclick="Delete('2');" value="Xóa"
-                                        class="btn btn-danger btn-sm"></td>
-                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                 </div>

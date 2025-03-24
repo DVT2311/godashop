@@ -21,16 +21,12 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{#each data}}
                                 <tr>
                                     <td><input type="checkbox"></td>
-                                    <td>a@gmail.com</td>
-
+                                    <td>{{this.email}}</td>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>b@gmail.com</td>
-
-                                </tr>
+                                {{/each}}
                             </tbody>
                         </table>
                     </div>

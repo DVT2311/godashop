@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('province', {
+module.exports = function (sequelize, DataTypes) {
+  const Province = sequelize.define('province', {
     id: {
       type: DataTypes.STRING(5),
       allowNull: false,
@@ -29,4 +29,11 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
+  // 🛠 Định nghĩa quan hệ trong associate()
+  Province.associate = (models) => {
+    Province.hasMany(models.district, { as: 'districts', foreignKey: "province_id" });
+
+    Province.hasMany(models.transport, { as: 'transports', foreignKey: "province_id" });
+  };
+  return Province;
 };

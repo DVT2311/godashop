@@ -22,16 +22,27 @@ fs.readdirSync(__dirname)
     db[model.name] = model;
   });
 
+
 Object.keys(db).forEach((modelName) => {
+  // console.log(`🔄 Checking associations for: ${modelName}`);
   if (db[modelName].associate) {
     db[modelName].associate(db);
+    // console.log(`✅ Associated: ${modelName}`);
   }
+  // else {
+  //   console.log(`⚠️ No associate() method in: ${modelName}`);
+  // }
 });
+// console.log("Loaded Models:", Object.keys(db));
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+// sequelize.sync({ alter: true }); // Cập nhật bảng mà không mất dữ liệu
+
+
 
 
 // const fs = require("fs");

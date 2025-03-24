@@ -1,0 +1,30 @@
+<div id="content-wrapper">
+    <div class="container-fluid">
+        <!-- Breadcrumbs-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="#">Quản lý</a>
+            </li>
+            <li class="breadcrumb-item active">Cập nhập tác vụ</li>
+        </ol>
+        <!-- /form -->
+        <form class="form-horizontal" method="post" action="/admin/permission/post_edit_action">
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="name">Mã</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="name" id="name" type="text" value="{{data.name}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12 control-label" for="fullname">Tên</label>
+                <div class="col-md-9 col-lg-6">
+                    <input name="fullname" id="fullname" type="text" value="{{data.description}}" class="form-control">
+                </div>
+            </div>
+            <div class="form-action">
+                <button type="submit" class="btn btn-primary btn-sm">Lưu</button>
+            </div>
+        </form>
+        <!-- /form-->
+    </div>
+    <!-- /.container-fluid -->
